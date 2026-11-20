@@ -1,0 +1,687 @@
+{
+  "pack": "hazards-api-endpoints",
+  "title": "Hazards and alerts API endpoints",
+  "snapshot": "2026-11-15",
+  "tested": {
+    "min": "2026-11-14",
+    "max": "2026-11-15",
+    "text": "14–15 Nov 2026"
+  },
+  "note": "On the date in last_tested (IST), one GET to the URL, sent with no key, returned HTTP 2xx and a non-empty data body. HTML pages and empty results did not pass. The format column records what came back. This is a test result for that date, not a promise that the URL answers today. Licences, terms, rate limits, accuracy and freshness were not reviewed. Endpoints are URLs, not separate APIs; many share one service.",
+  "licence": "CC BY 4.0: credit AgentPopulation and link https://agentpopulation.com",
+  "focus": "title matches /hazard(?!ous)|alerts?\\b|warnings?|\\bwatch(es)?\\b|advisor(y|ies)|outlook|emergency (alert|warning|management|operation|response|evacuation|shelter|plan|zone)|evacuat|shelters?\\b|disaster|flood|inundat|wild ?fire|bush ?fire|forest ?fire|fire (danger|weather|perimet|risk|hazard)|burn(ed)? (area|scar|severity)|smoke|earthquake|quake|seism|sism|\\bfaults?\\b|liquefact|volcan|\\blava|eruption|lahar|tsunami|landslide|mudslide|debris flow|rock ?fall|avalanche|subsiden|drought|hurricane|cyclone|typhoon|storm(?! ?water| ?drain| ?sewer)|tornado|sea level rise|erosion|heat ?wave|extreme heat|\\bhail|blizzard|\\brisk|rischio|pericol|frana|alluvion|hochwasser|überschwemm|erdbeben|waldbrand|lawine|naturgefahr|gefahrenkarte|incendi|inondation|riesgo|inundaci|σεισμ|deprem|terremot/i AND NOT title matches /waste|hazardous|chemicals|oil stocks|abfall/i AND NOT title matches /hospital|dialysis|medical|pharmac|homeless|address|\\b(e|ng)?911\\b|psap|food provider|school|fire ?stations?|hydrant|police|navigation hazard|bus ?shelter/i AND NOT title matches /missing person/i AND NOT url matches /request=getcapabilities|/csw/i AND NOT title matches /superseded/i AND NOT url matches //erddap/info/|@australiademo|risk_assessment_inputs/i AND NOT host in (sampleserver6.arcgisonline.com, test.maps.gov.bc.ca)",
+  "buckets": [
+    {
+      "id": "agent",
+      "name": "Agent tools",
+      "title": "Hazard zones, warnings and outlooks an agent can query",
+      "filter": "tags has agent-ready AND title matches /hazard(?!ous)|alerts?\\b|warnings?|\\bwatch(es)?\\b|advisor(y|ies)|outlook|emergency (alert|warning|management|operation|response|evacuation|shelter|plan|zone)|evacuat|shelters?\\b|disaster|flood|inundat|wild ?fire|bush ?fire|forest ?fire|fire (danger|weather|perimet|risk|hazard)|burn(ed)? (area|scar|severity)|smoke|earthquake|quake|seism|sism|\\bfaults?\\b|liquefact|volcan|\\blava|eruption|lahar|tsunami|landslide|mudslide|debris flow|rock ?fall|avalanche|subsiden|drought|hurricane|cyclone|typhoon|storm(?! ?water| ?drain| ?sewer)|tornado|sea level rise|erosion|heat ?wave|extreme heat|\\bhail|blizzard|\\brisk|rischio|pericol|frana|alluvion|hochwasser|überschwemm|erdbeben|waldbrand|lawine|naturgefahr|gefahrenkarte|incendi|inondation|riesgo|inundaci|σεισμ|deprem|terremot/i",
+      "endpoints": 25041,
+      "notes": [
+        "21915 of these are map-layer queries that asked for a few records (resultRecordCount); raise it or page through for the whole layer."
+      ],
+      "criteria": "Services in this pack with the most endpoints that match this bucket and are tagged agent-ready (no key sent in the test call, JSON body, passed a data call). Ties go to the service with more country codes, then by name. Only services with at least one bucket row that matches the focus rule are listed, and the sample comes from those rows; the counts cover the whole bucket. The sample URL is the first row by URL sort after preferring, in this order: rows that match the bucket's sample preference when it has one, rows that return values rather than describe a dataset or a service (not ERDDAP /info/ pages, OGC GetCapabilities requests, bare OWS addresses, PxWeb tables, UN SDG series lists, Statistics Canada download pointers, WorldPop listings, GTFS validation reports, untitled rows or service root addresses), and agent-ready rows. Sample preference in this bucket: NOT url matches ///(services[0-9]*(-[a-z0-9]+)?|utility)\\.arcgis\\.com//i AND title matches /warning|outlook|hazard|flood/i. Services named \"ArcGIS organization\" hold map layers from many owners and are added only when fewer than 5 other services match.",
+      "services": [
+        {
+          "service": "USGS Earthquake Hazards",
+          "display": "USGS Earthquake Hazards",
+          "host": "earthquake.usgs.gov",
+          "endpoints_in_bucket": 1021,
+          "endpoints_in_pack": 1143,
+          "country_codes": [
+            "AF",
+            "BO",
+            "FJ",
+            "IR",
+            "MM",
+            "PE",
+            "PG",
+            "PH",
+            "RU",
+            "SB",
+            "TJ",
+            "US",
+            "VU"
+          ],
+          "formats": [
+            "json"
+          ],
+          "formats_in_pack": 3,
+          "sample_url": "https://earthquake.usgs.gov/arcgis/rest/services/haz/Qfaults/MapServer/11/query?where=1%3D1&outFields=*&returnGeometry=false&resultRecordCount=5&f=json",
+          "sample_title": "Hazard - Earthquake - Live - Line - Nevada / Fault Lines (USGS)",
+          "sample_format": "json",
+          "sample_last_tested": "2026-11-15"
+        },
+        {
+          "service": "Bipadportal",
+          "display": "Bipadportal",
+          "host": "bipadportal.gov.np",
+          "endpoints_in_bucket": 999,
+          "endpoints_in_pack": 999,
+          "country_codes": [
+            "NP"
+          ],
+          "formats": [
+            "json"
+          ],
+          "formats_in_pack": 1,
+          "sample_url": "https://bipadportal.gov.np/api/v1/district/1/",
+          "sample_title": "BIPAD Portal (Nepal NDRRMA disaster information): district record",
+          "sample_format": "json",
+          "sample_last_tested": "2026-11-15"
+        },
+        {
+          "service": "Doi",
+          "display": "Doi",
+          "host": "doi.org",
+          "endpoints_in_bucket": 424,
+          "endpoints_in_pack": 790,
+          "country_codes": [],
+          "formats": [
+            "json"
+          ],
+          "formats_in_pack": 1,
+          "sample_url": "https://doi.org/10.5066/F70G3HB8",
+          "sample_title": "Projecting community changes in hazard exposure to support long-term risk reduction: a case study of tsunami hazards in the U.S. Pacific Northwest - Digital Data",
+          "sample_format": "json",
+          "sample_last_tested": "2026-11-15"
+        },
+        {
+          "service": "FEMA AGOL (ArcGIS Online)",
+          "display": "FEMA AGOL (ArcGIS Online)",
+          "host": "services.arcgis.com",
+          "endpoints_in_bucket": 342,
+          "endpoints_in_pack": 468,
+          "country_codes": [
+            "GB",
+            "US"
+          ],
+          "formats": [
+            "json"
+          ],
+          "formats_in_pack": 1,
+          "sample_url": "https://services.arcgis.com/XG15cJAlne2vxtgt/ArcGIS/rest/services/National_Risk_Index_Counties/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&resultRecordCount=5&f=json",
+          "sample_title": "FEMA National Risk Index by County",
+          "sample_format": "json",
+          "sample_last_tested": "2026-11-14"
+        },
+        {
+          "service": "ArcGIS Online for Ontario Schools (ArcGIS Online)",
+          "display": "ArcGIS Online for Ontario Schools (ArcGIS Online)",
+          "host": "services.arcgis.com",
+          "endpoints_in_bucket": 206,
+          "endpoints_in_pack": 251,
+          "country_codes": [
+            "CA",
+            "FR",
+            "GB",
+            "US"
+          ],
+          "formats": [
+            "json"
+          ],
+          "formats_in_pack": 1,
+          "sample_url": "https://services.arcgis.com/QI0dObYawrKkuwDp/arcgis/rest/services/- Forest Fires 5okm/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&resultRecordCount=5&f=json",
+          "sample_title": "- Forest Fires 5okm",
+          "sample_format": "json",
+          "sample_last_tested": "2026-11-15"
+        },
+        {
+          "service": "California State University San Marcos GIS Lab (ArcGIS Online)",
+          "display": "California State University San Marcos GIS Lab (ArcGIS Online)",
+          "host": "services.arcgis.com",
+          "endpoints_in_bucket": 161,
+          "endpoints_in_pack": 196,
+          "country_codes": [
+            "US"
+          ],
+          "formats": [
+            "json"
+          ],
+          "formats_in_pack": 1,
+          "sample_url": "https://services.arcgis.com/uEH09Hfm70zI2ZxR/arcgis/rest/services/Area within 15 Minutes Travel from Emergency Shelters/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&resultRecordCount=5&f=json",
+          "sample_title": "Area within 15 Minutes Travel from Emergency Shelters",
+          "sample_format": "json",
+          "sample_last_tested": "2026-11-15"
+        },
+        {
+          "service": "BrisMAP Public (ArcGIS Online)",
+          "display": "BrisMAP Public (ArcGIS Online)",
+          "host": "services2.arcgis.com",
+          "endpoints_in_bucket": 153,
+          "endpoints_in_pack": 173,
+          "country_codes": [
+            "AU",
+            "US"
+          ],
+          "formats": [
+            "json"
+          ],
+          "formats_in_pack": 1,
+          "sample_url": "https://services2.arcgis.com/dEKgZETqwmDAh1rP/arcgis/rest/services/Bushfire_overlay/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&resultRecordCount=5&f=json",
+          "sample_title": "City Plan 2014 - Bushfire overlay",
+          "sample_format": "json",
+          "sample_last_tested": "2026-11-14"
+        },
+        {
+          "service": "Toronto District School Board (ArcGIS Online)",
+          "display": "Toronto District School Board (ArcGIS Online)",
+          "host": "services2.arcgis.com",
+          "endpoints_in_bucket": 144,
+          "endpoints_in_pack": 224,
+          "country_codes": [
+            "CA",
+            "GB",
+            "US"
+          ],
+          "formats": [
+            "json"
+          ],
+          "formats_in_pack": 1,
+          "sample_url": "https://services2.arcgis.com/PuP9I73SXDqGc9Kp/arcgis/rest/services/%E2%80%9CRecent_Earthquakes%E2%80%9D/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&resultRecordCount=5&f=json",
+          "sample_title": "“Recent Earthquakes”",
+          "sample_format": "json",
+          "sample_last_tested": "2026-11-14"
+        }
+      ]
+    },
+    {
+      "id": "app",
+      "name": "App features",
+      "title": "Weather alerts, warnings and hazard outlooks for an alert feed",
+      "filter": "subcategory matches /^(Weather alerts by county|Weather warnings)$/i OR title matches /alerts?\\b|warnings?|\\bwatch(es)?\\b|advisor(y|ies)|outlook/i",
+      "endpoints": 283,
+      "notes": [
+        "58 of these are JMA warning files for one region of Japan."
+      ],
+      "criteria": "Services in this pack with the most endpoints that match this bucket and passed a data call. Ties go to the service with more country codes, then by name. Only services with at least one bucket row that matches the focus rule are listed, and the sample comes from those rows; the counts cover the whole bucket. The sample URL is the first row by URL sort after preferring, in this order: rows that match the bucket's sample preference when it has one, rows that return values rather than describe a dataset or a service (not ERDDAP /info/ pages, OGC GetCapabilities requests, bare OWS addresses, PxWeb tables, UN SDG series lists, Statistics Canada download pointers, WorldPop listings, GTFS validation reports, untitled rows or service root addresses), and agent-ready rows. Sample preference in this bucket: subcategory matches /^(Weather alerts by county|Weather warnings)$/i. Services named \"ArcGIS organization\" hold map layers from many owners and are added only when fewer than 5 other services match.",
+      "services": [
+        {
+          "service": "Jma",
+          "display": "Jma",
+          "host": "www.jma.go.jp",
+          "endpoints_in_bucket": 58,
+          "endpoints_in_pack": 58,
+          "country_codes": [
+            "JP"
+          ],
+          "formats": [
+            "json"
+          ],
+          "formats_in_pack": 1,
+          "sample_url": "https://www.jma.go.jp/bosai/warning/data/warning/011000.json",
+          "sample_title": "JMA warnings: Soya",
+          "sample_format": "json",
+          "sample_last_tested": "2026-11-14"
+        },
+        {
+          "service": "NOAA GeoPlatform (ArcGIS Online)",
+          "display": "NOAA GeoPlatform (ArcGIS Online)",
+          "host": "services2.arcgis.com",
+          "endpoints_in_bucket": 25,
+          "endpoints_in_pack": 105,
+          "country_codes": [
+            "US"
+          ],
+          "formats": [
+            "json"
+          ],
+          "formats_in_pack": 1,
+          "sample_url": "https://services2.arcgis.com/C8EMgrsFcRFL6LrL/arcgis/rest/services/2021_Spring_Flood_Outlook_Polygons/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&resultRecordCount=5&f=json",
+          "sample_title": "2021 Spring Flood Outlook Polygons",
+          "sample_format": "json",
+          "sample_last_tested": "2026-11-14"
+        },
+        {
+          "service": "Usgs",
+          "display": "Usgs",
+          "host": "data.usgs.gov",
+          "endpoints_in_bucket": 15,
+          "endpoints_in_pack": 4442,
+          "country_codes": [
+            "US"
+          ],
+          "formats": [
+            "xml"
+          ],
+          "formats_in_pack": 1,
+          "sample_url": "https://data.usgs.gov/datacatalog/metadata/USGS.00964f8d-39af-41cd-9b56-f93261f21456.xml",
+          "sample_title": "Hurricane Michael Assessment of Potential Coastal Change Impacts: NHC Advisory 15, 0400 AM CDT WED OCT 10 2018 - Original Metadata",
+          "sample_format": "xml",
+          "sample_last_tested": "2026-11-15"
+        },
+        {
+          "service": "Bund",
+          "display": "Bund",
+          "host": "warnung.bund.de",
+          "endpoints_in_bucket": 13,
+          "endpoints_in_pack": 13,
+          "country_codes": [
+            "DE"
+          ],
+          "formats": [
+            "json",
+            "xml"
+          ],
+          "formats_in_pack": 2,
+          "sample_url": "https://warnung.bund.de/api31/appdata/covid/covidinfos/DE/covidinfos.json",
+          "sample_title": "Bundesamt für Bevölkerungsschutz und Katastrophenhilfe (BBK): NINA warning app API",
+          "sample_format": "json",
+          "sample_last_tested": "2026-11-15"
+        },
+        {
+          "service": "Noaa",
+          "display": "Noaa",
+          "host": "mapservices.weather.noaa.gov",
+          "endpoints_in_bucket": 10,
+          "endpoints_in_pack": 30,
+          "country_codes": [
+            "US"
+          ],
+          "formats": [
+            "json"
+          ],
+          "formats_in_pack": 1,
+          "sample_url": "https://mapservices.weather.noaa.gov/experimental/rest/services/owp_fho/MapServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&resultRecordCount=5&f=json",
+          "sample_title": "Flood Hazards Outlook (FHO) - Experimental (CloudGIS)",
+          "sample_format": "json",
+          "sample_last_tested": "2026-11-15"
+        },
+        {
+          "service": "Napsgfoundation",
+          "display": "Napsgfoundation",
+          "host": "prep-response-portal.napsgfoundation.org",
+          "endpoints_in_bucket": 9,
+          "endpoints_in_pack": 486,
+          "country_codes": [],
+          "formats": [
+            "csv",
+            "geojson",
+            "xml"
+          ],
+          "formats_in_pack": 5,
+          "sample_url": "https://prep-response-portal.napsgfoundation.org/api/download/v1/items/bba3d0a070d34cea9a303c24a71d5190/csv?layers=1",
+          "sample_title": "NOAA Tornado Warnings - CSV",
+          "sample_format": "csv",
+          "sample_last_tested": "2026-11-15"
+        },
+        {
+          "service": "Austintexas",
+          "display": "Austintexas",
+          "host": "data.austintexas.gov",
+          "endpoints_in_bucket": 6,
+          "endpoints_in_pack": 74,
+          "country_codes": [
+            "US"
+          ],
+          "formats": [
+            "json",
+            "xml"
+          ],
+          "formats_in_pack": 4,
+          "sample_url": "https://data.austintexas.gov/api/views/43eg-euh2/rows.json?accessType=DOWNLOAD",
+          "sample_title": "EMS - Quarterly Clinical Measures - Trauma Alert - JSON File",
+          "sample_format": "json",
+          "sample_last_tested": "2026-11-15"
+        },
+        {
+          "service": "mapping1.gw.govt.nz",
+          "display": "mapping1.gw.govt.nz",
+          "host": "mapping1.gw.govt.nz",
+          "endpoints_in_bucket": 6,
+          "endpoints_in_pack": 9,
+          "country_codes": [
+            "NZ"
+          ],
+          "formats": [
+            "json"
+          ],
+          "formats_in_pack": 1,
+          "sample_url": "https://mapping1.gw.govt.nz/arcgis/rest/services/Floods/Flood_Protection_Advisory_Web_Map_2016/MapServer/10/query?where=1%3D1&outFields=*&resultRecordCount=10&f=json",
+          "sample_title": "mapping1.gw.govt.nz: Floods/Flood_Protection_Advisory_Web_Map_2016 / PC43_FLOOD_HAZARD_(11_May_2016)",
+          "sample_format": "json",
+          "sample_last_tested": "2026-11-15"
+        }
+      ]
+    },
+    {
+      "id": "grounding",
+      "name": "Grounding and data pipelines",
+      "title": "Flood, landslide, fire and seismic hazard zones for scheduled loads",
+      "filter": "title matches /zones?\\b|overlay|susceptib|risk|hazard (area|map)|floodplain|microzon|prone/i",
+      "endpoints": 6858,
+      "notes": [],
+      "criteria": "Services in this pack with the most endpoints that match this bucket and passed a data call. Ties go to the service with more country codes, then by name. Only services with at least one bucket row that matches the focus rule are listed, and the sample comes from those rows; the counts cover the whole bucket. The sample URL is the first row by URL sort after preferring, in this order: rows that match the bucket's sample preference when it has one, rows that return values rather than describe a dataset or a service (not ERDDAP /info/ pages, OGC GetCapabilities requests, bare OWS addresses, PxWeb tables, UN SDG series lists, Statistics Canada download pointers, WorldPop listings, GTFS validation reports, untitled rows or service root addresses), and agent-ready rows. Sample preference in this bucket: NOT url matches ///(services[0-9]*(-[a-z0-9]+)?|utility)\\.arcgis\\.com//i. Services named \"ArcGIS organization\" hold map layers from many owners and are added only when fewer than 5 other services match.",
+      "services": [
+        {
+          "service": "FEMA AGOL (ArcGIS Online)",
+          "display": "FEMA AGOL (ArcGIS Online)",
+          "host": "services.arcgis.com",
+          "endpoints_in_bucket": 289,
+          "endpoints_in_pack": 468,
+          "country_codes": [
+            "GB",
+            "US"
+          ],
+          "formats": [
+            "json"
+          ],
+          "formats_in_pack": 1,
+          "sample_url": "https://services.arcgis.com/XG15cJAlne2vxtgt/ArcGIS/rest/services/National_Risk_Index_Counties/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&resultRecordCount=5&f=json",
+          "sample_title": "FEMA National Risk Index by County",
+          "sample_format": "json",
+          "sample_last_tested": "2026-11-14"
+        },
+        {
+          "service": "Usgs",
+          "display": "Usgs",
+          "host": "data.usgs.gov",
+          "endpoints_in_bucket": 265,
+          "endpoints_in_pack": 4442,
+          "country_codes": [
+            "US"
+          ],
+          "formats": [
+            "xml"
+          ],
+          "formats_in_pack": 1,
+          "sample_url": "https://data.usgs.gov/datacatalog/metadata/USGS.00edba81-81a5-48da-bfb1-27b7eb506ac8.xml",
+          "sample_title": "lanai_vol - Volcanic and Seismic Hazard Intensity Level in the coastal zone of Lanai, Hawaii - Original Metadata",
+          "sample_format": "xml",
+          "sample_last_tested": "2026-11-15"
+        },
+        {
+          "service": "Waterinfo",
+          "display": "Waterinfo",
+          "host": "geoservice.waterinfo.be",
+          "endpoints_in_bucket": 182,
+          "endpoints_in_pack": 188,
+          "country_codes": [
+            "BE"
+          ],
+          "formats": [
+            "xml"
+          ],
+          "formats_in_pack": 1,
+          "sample_url": "https://geoservice.waterinfo.be/OGRK/download/FLU_hCC/beschermde_gebieden_FLU_hCC_T10.gml",
+          "sample_title": "Flood risk map Protected areas - FLUVIAL - future climate (with climate projection 2050) - high probability",
+          "sample_format": "xml",
+          "sample_last_tested": "2026-11-14"
+        },
+        {
+          "service": "BrisMAP Public (ArcGIS Online)",
+          "display": "BrisMAP Public (ArcGIS Online)",
+          "host": "services2.arcgis.com",
+          "endpoints_in_bucket": 160,
+          "endpoints_in_pack": 173,
+          "country_codes": [
+            "AU",
+            "US"
+          ],
+          "formats": [
+            "json"
+          ],
+          "formats_in_pack": 1,
+          "sample_url": "https://services2.arcgis.com/dEKgZETqwmDAh1rP/arcgis/rest/services/Bushfire_overlay/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&resultRecordCount=5&f=json",
+          "sample_title": "City Plan 2014 - Bushfire overlay",
+          "sample_format": "json",
+          "sample_last_tested": "2026-11-14"
+        },
+        {
+          "service": "University of Texas at Arlington (ArcGIS Online)",
+          "display": "University of Texas at Arlington (ArcGIS Online)",
+          "host": "services5.arcgis.com",
+          "endpoints_in_bucket": 99,
+          "endpoints_in_pack": 104,
+          "country_codes": [
+            "US"
+          ],
+          "formats": [
+            "json"
+          ],
+          "formats_in_pack": 1,
+          "sample_url": "https://services5.arcgis.com/z5pCt1Uf7GwSRRTu/arcgis/rest/services/Enrich%20Landslide%20Risk%20Areas%20Landscape%20Aaron/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&resultRecordCount=5&f=json",
+          "sample_title": "Enrich Landslide Risk Areas Landscape Aaron",
+          "sample_format": "json",
+          "sample_last_tested": "2026-11-14"
+        },
+        {
+          "service": "Palomar College (ArcGIS Online)",
+          "display": "Palomar College (ArcGIS Online)",
+          "host": "services1.arcgis.com",
+          "endpoints_in_bucket": 88,
+          "endpoints_in_pack": 111,
+          "country_codes": [
+            "US"
+          ],
+          "formats": [
+            "json"
+          ],
+          "formats_in_pack": 1,
+          "sample_url": "https://services1.arcgis.com/rvD4Y1nm1VbVDxJv/arcgis/rest/services/Fire_Hazard_Severity_Zones/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&resultRecordCount=5&f=json",
+          "sample_title": "Fire Hazard Severity Zones",
+          "sample_format": "json",
+          "sample_last_tested": "2026-11-14"
+        },
+        {
+          "service": "ArcGIS Online: Local Overlays",
+          "display": "ArcGIS Online: Local Overlays",
+          "host": "data-1-hobartcc.opendata.arcgis.com",
+          "endpoints_in_bucket": 87,
+          "endpoints_in_pack": 87,
+          "country_codes": [
+            "AU"
+          ],
+          "formats": [
+            "csv",
+            "xml",
+            "geojson",
+            "json"
+          ],
+          "formats_in_pack": 4,
+          "sample_url": "https://data-1-hobartcc.opendata.arcgis.com/api/download/v1/items/d42f45dc18ce41199a48bfd73a20212a/geojson?layers=25",
+          "sample_title": "State Overlays - Coastal Hazard Band Erosion - GeoJSON",
+          "sample_format": "json",
+          "sample_last_tested": "2026-11-15"
+        },
+        {
+          "service": "University of South Florida GIS (ArcGIS Online)",
+          "display": "University of South Florida GIS (ArcGIS Online)",
+          "host": "services1.arcgis.com",
+          "endpoints_in_bucket": 75,
+          "endpoints_in_pack": 101,
+          "country_codes": [
+            "US"
+          ],
+          "formats": [
+            "json"
+          ],
+          "formats_in_pack": 1,
+          "sample_url": "https://services1.arcgis.com/sQOueNHZBxRJjRN3/arcgis/rest/services/Enriched Landslide Risk Areas (Annette Leshko)/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&resultRecordCount=5&f=json",
+          "sample_title": "Enriched Landslide Risk Areas (Annette Leshko)",
+          "sample_format": "json",
+          "sample_last_tested": "2026-11-15"
+        }
+      ]
+    },
+    {
+      "id": "evals",
+      "name": "Evals and testing",
+      "title": "Alerts, hazard layers and files to test a hazard tool",
+      "filter": "the whole pack",
+      "endpoints": 53354,
+      "notes": [],
+      "criteria": "Services in this pack that returned the most different formats, then the most endpoints that passed a data call, then by name: a mix of response shapes to test parsers and tool calls. Only services with at least one bucket row that matches the focus rule are listed, and the sample comes from those rows; the counts cover the whole bucket. The sample URL is the first row by URL sort after preferring, in this order: rows that match the bucket's sample preference when it has one, rows that return values rather than describe a dataset or a service (not ERDDAP /info/ pages, OGC GetCapabilities requests, bare OWS addresses, PxWeb tables, UN SDG series lists, Statistics Canada download pointers, WorldPop listings, GTFS validation reports, untitled rows or service root addresses), and agent-ready rows. Services named \"ArcGIS organization\" hold map layers from many owners and are added only when fewer than 5 other services match.",
+      "services": [
+        {
+          "service": "Napsgfoundation",
+          "display": "Napsgfoundation",
+          "host": "prep-response-portal.napsgfoundation.org",
+          "endpoints_in_bucket": 486,
+          "endpoints_in_pack": 486,
+          "country_codes": [],
+          "formats": [
+            "json",
+            "csv",
+            "xml",
+            "zip",
+            "geojson"
+          ],
+          "formats_in_pack": 5,
+          "sample_url": "https://prep-response-portal.napsgfoundation.org/api/download/v1/items/15fb71971c7246338440d39b9f158bd7/kml?layers=0",
+          "sample_title": "CA EVACUATIONS - KML",
+          "sample_format": "json",
+          "sample_last_tested": "2026-11-15"
+        },
+        {
+          "service": "California Open Data Portal",
+          "display": "California Open Data Portal",
+          "host": "gis.data.ca.gov",
+          "endpoints_in_bucket": 58,
+          "endpoints_in_pack": 58,
+          "country_codes": [
+            "US"
+          ],
+          "formats": [
+            "json",
+            "csv",
+            "xml",
+            "geojson",
+            "zip"
+          ],
+          "formats_in_pack": 5,
+          "sample_url": "https://gis.data.ca.gov/api/download/v1/items/89decde0747b47aba61501ca4a57958c/geojson?layers=0",
+          "sample_title": "Climate Vulnerability and Risk Assessment Riverine Flood Risk - GeoJSON",
+          "sample_format": "json",
+          "sample_last_tested": "2026-11-15"
+        },
+        {
+          "service": "ArcGIS Online: California Important Farmland",
+          "display": "ArcGIS Online: California Important Farmland",
+          "host": "gis-cnra.hub.arcgis.com",
+          "endpoints_in_bucket": 40,
+          "endpoints_in_pack": 40,
+          "country_codes": [
+            "US"
+          ],
+          "formats": [
+            "json",
+            "csv",
+            "xml",
+            "zip",
+            "geojson"
+          ],
+          "formats_in_pack": 5,
+          "sample_url": "https://gis-cnra.hub.arcgis.com/api/download/v1/items/0860546963f147c78db3da52cd7ee413/geojson?layers=0",
+          "sample_title": "CGS Seismic Hazards Program: Landslide Zones - GeoJSON",
+          "sample_format": "json",
+          "sample_last_tested": "2026-11-15"
+        },
+        {
+          "service": "California Natural Resources Agency Open",
+          "display": "California Natural Resources Agency Open",
+          "host": "gis.data.cnra.ca.gov",
+          "endpoints_in_bucket": 37,
+          "endpoints_in_pack": 37,
+          "country_codes": [
+            "US"
+          ],
+          "formats": [
+            "csv",
+            "json",
+            "zip",
+            "xml",
+            "geojson"
+          ],
+          "formats_in_pack": 5,
+          "sample_url": "https://gis.data.cnra.ca.gov/api/download/v1/items/0860546963f147c78db3da52cd7ee413/geojson?layers=0",
+          "sample_title": "CGS Seismic Hazards Program: Landslide Zones - GeoJSON",
+          "sample_format": "json",
+          "sample_last_tested": "2026-11-15"
+        },
+        {
+          "service": "Amerigeo",
+          "display": "Amerigeo",
+          "host": "www.amerigeo.org",
+          "endpoints_in_bucket": 579,
+          "endpoints_in_pack": 579,
+          "country_codes": [],
+          "formats": [
+            "xml",
+            "csv",
+            "json",
+            "geojson"
+          ],
+          "formats_in_pack": 4,
+          "sample_url": "https://www.amerigeo.org/api/download/v1/items/2a45f767a6e549bfbe5bf638681f1fac/geojson?layers=0",
+          "sample_title": "World Volcanoes - GeoJSON",
+          "sample_format": "json",
+          "sample_last_tested": "2026-11-15"
+        },
+        {
+          "service": "ArcGIS Online: Local Overlays",
+          "display": "ArcGIS Online: Local Overlays",
+          "host": "data-1-hobartcc.opendata.arcgis.com",
+          "endpoints_in_bucket": 87,
+          "endpoints_in_pack": 87,
+          "country_codes": [
+            "AU"
+          ],
+          "formats": [
+            "csv",
+            "xml",
+            "geojson",
+            "json"
+          ],
+          "formats_in_pack": 4,
+          "sample_url": "https://data-1-hobartcc.opendata.arcgis.com/api/download/v1/items/d42f45dc18ce41199a48bfd73a20212a/geojson?layers=25",
+          "sample_title": "State Overlays - Coastal Hazard Band Erosion - GeoJSON",
+          "sample_format": "json",
+          "sample_last_tested": "2026-11-15"
+        },
+        {
+          "service": "Austintexas",
+          "display": "Austintexas",
+          "host": "data.austintexas.gov",
+          "endpoints_in_bucket": 74,
+          "endpoints_in_pack": 74,
+          "country_codes": [
+            "US"
+          ],
+          "formats": [
+            "xml",
+            "json",
+            "csv",
+            "zip"
+          ],
+          "formats_in_pack": 4,
+          "sample_url": "https://data.austintexas.gov/api/views/2ph5-gt5g/rows.json?accessType=DOWNLOAD",
+          "sample_title": "EMS - FY2017 Safety Report Risk Levels - JSON File",
+          "sample_format": "json",
+          "sample_last_tested": "2026-11-15"
+        },
+        {
+          "service": "NYC Open Data (Socrata)",
+          "display": "NYC Open Data (Socrata)",
+          "host": "data.cityofnewyork.us",
+          "endpoints_in_bucket": 41,
+          "endpoints_in_pack": 41,
+          "country_codes": [
+            "US"
+          ],
+          "formats": [
+            "json",
+            "xml",
+            "csv",
+            "zip"
+          ],
+          "formats_in_pack": 4,
+          "sample_url": "https://data.cityofnewyork.us/api/views/b2gb-nkrq/rows.json?accessType=DOWNLOAD",
+          "sample_title": "Citizen Emergency Response Team (CERT) - JSON File",
+          "sample_format": "json",
+          "sample_last_tested": "2026-11-15"
+        }
+      ]
+    }
+  ]
+}

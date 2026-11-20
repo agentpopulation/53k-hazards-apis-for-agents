@@ -1,0 +1,38 @@
+{
+  "name": "53k-hazards-apis-for-agents",
+  "old_name": "hazards-api-endpoints",
+  "new_name": "53k-hazards-apis-for-agents",
+  "url": "https://github.com/agentpopulation/53k-hazards-apis-for-agents",
+  "description": "53,354 hazard and alert API endpoints that passed a keyless data call. For agent tools, apps, pipelines and evals. CSV, CC BY 4.0.",
+  "homepage": "https://agentpopulation.com/apis",
+  "topics": [
+    "api-endpoints",
+    "open-data",
+    "dataset",
+    "ai-agents",
+    "agent-tools",
+    "agentpopulation",
+    "natural-hazards",
+    "weather-alerts",
+    "disaster-data",
+    "emergency-management",
+    "flood-risk",
+    "wildfire",
+    "landslides",
+    "drought",
+    "earthquakes",
+    "geojson",
+    "geospatial",
+    "arcgis"
+  ],
+  "release": {
+    "tag": "snapshot-2026-11-15",
+    "title": "Hazards and alerts API endpoints · snapshot 15 Nov 2026 · 53,354 endpoints",
+    "notesFile": "RELEASE_NOTES.md",
+    "manifest": "../_release/hazards-api-endpoints/release.json",
+    "assets": [
+      "../_release/hazards-api-endpoints/Hazards_API_Endpoints_AgentPopulation_Snapshot_2026-11-15.csv.gz",
+      "../_release/hazards-api-endpoints/SHA256SUMS.txt"
+    ]
+  }
+}
